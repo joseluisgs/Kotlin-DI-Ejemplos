@@ -14,6 +14,7 @@ Ejemplos de cómo aplicar Inyección de Dependencias en Kotlin
     - [Código Acoplado](#código-acoplado)
   - [Inyección por Setter](#inyección-por-setter)
   - [Inyección con Constructor](#inyección-con-constructor)
+  - [Inyecciones por mecanismos manuales](#inyecciones-por-mecanismos-manuales)
   - [Autor](#autor)
     - [Contacto](#contacto)
   - [Licencia](#licencia)
@@ -124,6 +125,10 @@ Todavía podemos inyectar una subclase especializada de ClassB a ClassA.
 
 Ahora el compilador nos pedirá las dependencias que necesitamos en tiempo de compilación.
 
+## Inyecciones por mecanismos manuales
+En estos ejemplos, se muestra distintos tipos de inyecciones, ya sea usando clases o aplicando el patrón de inyección en base a interfaces.
+
+Se implementan desde constructores o builders que las obtienen en base a una función de inyección, a construcción de las dependencias de manera "perezosa" o lazy, con el objetivo de que la dependencia solo se cargue la primera vez que se ejecute.
 
 ## Autor
 
