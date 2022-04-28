@@ -26,6 +26,8 @@ ya sea de manera manual o usando librerías como Dagger y Koin.
 
 ## Inyección de Dependencias (DI)
 
+![imagen2](https://koenig-media.raywenderlich.com/uploads/2016/11/Dagger-feature.png)
+
 La inyección de dependencias es una técnica de desarrollo que permite a los desarrolladores de software, a través de la inyección de dependencias, obtener una dependencia de una clase en una clase que no tiene acceso a ella.
 
 El Principio de inyección de dependencia no es más que poder pasar (inyectar) las dependencias cuando sea necesario en lugar de inicializar las dependencias dentro de la clase receptora y con ello poder desacoplar la construcción de sus clases de la construcción de las dependencias de sus clases.
