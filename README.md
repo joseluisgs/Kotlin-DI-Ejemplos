@@ -1,4 +1,4 @@
-# Kotlin DI Ejemplos
+# Kotlin Inyección de Dependencias Ejemplos
 Ejemplos de cómo aplicar Inyección de Dependencias en Kotlin 
 
 [![Kotlin](https://img.shields.io/badge/Code-Kotlin-blueviolet)](https://kotlinlang.org/)
@@ -8,14 +8,15 @@ Ejemplos de cómo aplicar Inyección de Dependencias en Kotlin
 
 ![imagen](https://www.adesso-mobile.de/wp-content/uploads/2021/02/kotlin-einfu%CC%88hrung.jpg)
 
-- [Kotlin DI Ejemplos](#kotlin-di-ejemplos)
+- [Kotlin Inyección de Dependencias Ejemplos](#kotlin-inyección-de-dependencias-ejemplos)
   - [Acerca de](#acerca-de)
   - [Inyección de Dependencias (DI)](#inyección-de-dependencias-di)
     - [Código Acoplado](#código-acoplado)
   - [Inyección por Setter](#inyección-por-setter)
   - [Inyección con Constructor](#inyección-con-constructor)
   - [Inyección de dependencias manual](#inyección-de-dependencias-manual)
-  - [Inyección de dependencias con Dagger](#inyección-de-dependencias-con-dagger)
+  - [Inyección de dependencias con Dagger2](#inyección-de-dependencias-con-dagger2)
+  - [Inyección de dependencias con Koin](#inyección-de-dependencias-con-koin)
   - [Autor](#autor)
     - [Contacto](#contacto)
   - [Licencia](#licencia)
@@ -133,22 +134,43 @@ En estos ejemplos, se muestra distintos tipos de inyecciones, ya sea usando clas
 
 Se implementan desde constructores o builders que las obtienen en base a una función de inyección, a construcción de las dependencias de manera "perezosa" o lazy, con el objetivo de que la dependencia solo se cargue la primera vez que se ejecute.
 
-## Inyección de dependencias con Dagger
+## Inyección de dependencias con Dagger2
 
 ![diagrama](https://github.com/joseluisgs/EntornosDesarrollo-08-2021-2022/raw/master/DI/DI-Dagger-Java/images/logo.png)
 
 Es un Framework creado inicialmente por Square y actualmente mantenido por Google para aplicaciones Java/Kotlin y
 Android cuyo principal objetivo es facilitar la implementación del patrón de diseño de Inyección de Dependencias, en
 otras palabras, se busca que sea Dagger2 el responsable de crear y administrar la creación de objetos en toda la
-aplicación. 
+aplicación. La inyección por dependencias hace que el proceso de inyección más automatizada , pero a la vez complicada de seguir/trazar.
 
 ![ImagenDagger](https://miro.medium.com/max/411/0*XcCXeA9iy-I4XSZ0.png)
+
+```kotlin
+@Singleton 
+class Something @Inject constructor() {
+   //... 
+}
+@Singleton 
+class OtherThing @Inject constructor() {
+   //... 
+}
+@Singleton
+class Dependency @Inject constructor(
+    something: Something,
+    otherThing: OtherThing) {
+   // ... Do something
+}
+class Target {
+   lateinit var dependency: Dependency
+}
+```
 
 Dagger resuelve las dependencias usando anotaciones, y generando las clases necesarias para la inyección de dependencias. El procesamiento de anotaciones requiere un tiempo de compilación adicional para generar dicho código. A veces, los cambios no se reflejan en la recompilación y requieren una limpieza del proyecto para regenerar código nuevo.
 
 Podemos resumir el funcionamiento de Dagger2 en el siguiente diagrama:
 
 ![daggerEsquema](https://github.com/joseluisgs/EntornosDesarrollo-08-2021-2022/raw/master/DI/DI-Dagger-Java/images/dagger.png)
+
 
 Tendremos un **Proveedor**, es el encargado de definir cómo se construyen las dependencias. En Dagger2 utilizamos ***
 Módulos*** y cada módulo es una clase que tiene el manejo de la creación de dichas dependencias.
@@ -191,6 +213,52 @@ realizar la inyección de dependencias:
 - **Provider** En ocasiones queremos una instancia nueva del objeto cada vez que la utilicemos. Para ello usamos un
   Provider en el atributo que queramos. Lo recuperaremos con ***get()***.
 
+  Más información en: https://dagger.dev/
+
+## Inyección de dependencias con Koin
+
+![imageKoin](https://www.kotzilla.io/wp-content/uploads/2022/01/kotzilla-moodboard_Koin_format-site-web-line.png)
+
+Koin es un framework de inyección de dependencias pragmático y liviano para desarrolladores Kotlin.
+Técnicamente Koin es un Service Locator. La idea básica detrás de un Service Locator es tener una clase que sepa cómo obtener todos los servicios que utiliza nuestra aplicación. Así que, el Service Locator tendría una propiedad por cada uno de esos servicios, que devolvería un objeto del tipo adecuado cuando se lo soliciten. Service Locator garantiza que el desarrollador obtenga lo solicitado automáticamente, introduzca un poco más de código, pero luego facilite la trazabilidad.
+
+![ServiceLocator](https://miro.medium.com/max/411/0*HX5NbuNoewvMi5O2.png)
+
+```kotlin
+class Something {
+    //...
+}
+
+class OtherThing() {
+    //...
+}
+class Dependency(
+    something: Something,
+    otherThing: OtherThing) {
+    // ... Do something
+}
+val mainKoinModule =
+    module {
+        single { Something() }
+        single { OtherThing() }
+        single { Dependency(get(), get()) }
+    }
+class Target {
+   private val dependency: Dependency by inject()
+}
+```
+
+El principal secreto de Korin es usar los Reified Functions, es decir, reificar la información de tipo genérico en tiempo de ejecución. Además basado en DSL (Domain Specific Language) otras de las características de usar Kotlin.
+
+Para trabajar con Koin debemos manejar estos conceptos: 
+- **module** Crea el módulo que Koin usa para proveer todas las dependencias.
+- **single** Nos ofrece la dependencia como *singleton*, es decir, siempre la misma instancia del objeto cada vez que sea inyectada.
+- **factory*** Nos ofrece una *instancia nueva* del objeto cada vez que se produzca la inyección.
+- **get()** Es usadado en el constructor de la clase para proveerle las dependencias indicadas.
+
+Por otro lado, Koin también te deja trabajar con anotaciones, lo que le da un efoque muy rápido cómo definimos las dependencias.
+
+Más información en: https://koin.io/
 
 ## Autor
 

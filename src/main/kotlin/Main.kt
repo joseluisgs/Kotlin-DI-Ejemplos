@@ -4,6 +4,7 @@ fun main() {
     println()
     inyeccionManual()
     inyeccionDagger()
+    inyeccionKoin()
 
 }
 
@@ -19,11 +20,19 @@ fun inyeccionManual() {
 }
 
 fun inyeccionDagger() {
-    println("Inyección Dagger")
+    println("Inyección Dagger2")
     println("================")
     println()
     dagger.casas.main()
     dagger.cafeteras.main()
     dagger.personas.main()
     dagger.myviews.main()
+}
+
+fun inyeccionKoin() {
+    println("Inyección Koin")
+    println("==============")
+    println()
+    koin.casas.main()
+
 }
