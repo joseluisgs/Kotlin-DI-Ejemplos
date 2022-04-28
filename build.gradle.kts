@@ -1,7 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.20"
+    val kotlinVersion = "1.6.20"
+    kotlin("jvm") version kotlinVersion
+    // Usamos kapt para anotaciones de Dagger
+    kotlin("kapt") version kotlinVersion
 }
 
 group = "es.joseluisgs"
@@ -12,6 +15,11 @@ repositories {
 }
 
 dependencies {
+    val daggerVersion: String by project
+    // Dagger
+    implementation("com.google.dagger:dagger:$daggerVersion")
+    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+    // Test
     testImplementation(kotlin("test"))
 }
 
@@ -20,5 +28,5 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "11"
 }
