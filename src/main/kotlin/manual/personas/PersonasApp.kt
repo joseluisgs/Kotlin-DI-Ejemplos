@@ -8,10 +8,11 @@ import manual.personas.services.PersonasStorageFile
 
 fun main() {
     println("Personas: Model->Controller->Repository->Storage(Database|File)")
+    println("==============================")
     val p = Persona(nombre = "Juan", apellido = "Perez", dni = "12345678")
     println(p)
     println()
-    
+
     var contRepoStorageBD = PersonasController(PersonasRepository(PersonasStorageDataBase()))
     println(contRepoStorageBD)
     var resBD = contRepoStorageBD.save(p)

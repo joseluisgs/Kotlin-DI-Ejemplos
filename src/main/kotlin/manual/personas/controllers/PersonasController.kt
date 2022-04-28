@@ -8,7 +8,7 @@ class PersonasController(private val personaRepository: IPersonasRepository) {
     private val id = UUID.randomUUID()
 
     fun save(persona: Persona): Persona {
-        println("PersonaController.save() --> $persona")
+        println("PersonasController.save() --> $persona")
         return personaRepository.save(persona)
     }
 

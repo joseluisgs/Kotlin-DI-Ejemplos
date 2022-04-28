@@ -8,10 +8,10 @@ class PersonasRepository(private val storage: IPersonaStorage) : IPersonasReposi
     private val id = UUID.randomUUID()
 
     override fun save(entity: Persona): Persona {
-        println("PersonaRepository.save() -->$entity")
+        println("PersonasRepository.save() -->$entity")
         return storage.save(entity)
     }
 
-    override fun toString() = "PersonaRepository(storage=$storage, id='$id')"
+    override fun toString() = "PersonasRepository(storage=$storage, id='$id')"
 
 }

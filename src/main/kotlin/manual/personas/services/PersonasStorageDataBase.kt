@@ -7,7 +7,7 @@ class PersonasStorageDataBase : IPersonaStorage {
     private val id = UUID.randomUUID()
 
     override fun save(item: Persona): Persona {
-        println("PersonaDataBaseStorage.save() --> $item")
+        println("PersonasStorageDataBase.save() --> $item")
         return item
     }
 
