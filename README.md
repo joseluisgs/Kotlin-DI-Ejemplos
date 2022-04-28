@@ -136,7 +136,12 @@ Se implementan desde constructores o builders que las obtienen en base a una fun
 Es un Framework creado inicialmente por Square y actualmente mantenido por Google para aplicaciones Java/Kotlin y
 Android cuyo principal objetivo es facilitar la implementación del patrón de diseño de Inyección de Dependencias, en
 otras palabras, se busca que sea Dagger2 el responsable de crear y administrar la creación de objetos en toda la
-aplicación. Podemos resumir el funcionamiento de Dagger2 en el siguiente diagrama:
+aplicación. 
+![ImagenDagger](https://miro.medium.com/max/411/0*XcCXeA9iy-I4XSZ0.png)
+
+Dagger resuelve las dependencias usando anotaciones, y generando las clases necesarias para la inyección de dependencias. El procesamiento de anotaciones requiere un tiempo de compilación adicional para generar dicho código. A veces, los cambios no se reflejan en la recompilación y requieren una limpieza del proyecto para regenerar código nuevo.
+
+Podemos resumir el funcionamiento de Dagger2 en el siguiente diagrama:
 ![diagrama](https://github.com/joseluisgs/EntornosDesarrollo-08-2021-2022/raw/master/DI/DI-Dagger-Java/images/logo.png)
 
 Tendremos un **Proveedor**, es el encargado de definir cómo se construyen las dependencias. En Dagger2 utilizamos ***
