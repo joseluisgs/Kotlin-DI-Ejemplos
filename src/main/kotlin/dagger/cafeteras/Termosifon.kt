@@ -1,10 +1,10 @@
-package manual.cafeteras
+package dagger.cafeteras
 
-import dagger.cafeteras.Bomba
-import dagger.cafeteras.Calentador
 import java.util.*
+import javax.inject.Inject
 
-data class Termosifon(private val calentador: Calentador) : Bomba {
+data class Termosifon
+@Inject constructor(private val calentador: Calentador) : Bomba {
     private val id = UUID.randomUUID()
 
     override fun bombear() {

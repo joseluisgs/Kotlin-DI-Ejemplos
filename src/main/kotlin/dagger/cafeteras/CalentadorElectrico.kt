@@ -1,9 +1,11 @@
-package manual.cafeteras
+package dagger.cafeteras
 
-import dagger.cafeteras.Calentador
 import java.util.*
+import javax.inject.Inject
 
-data class CalentadorElectrico(private val id: UUID = UUID.randomUUID()) : Calentador {
+class CalentadorElectrico
+@Inject constructor() : Calentador {
+    private val id: UUID = UUID.randomUUID()
 
     // true si esta calentando, false si esta apagado
     private var calentando = false
@@ -19,5 +21,9 @@ data class CalentadorElectrico(private val id: UUID = UUID.randomUUID()) : Calen
 
     override fun estaCaliente(): Boolean {
         return calentando
+    }
+
+    override fun toString(): String {
+        return "CalentadorElectrico(id='$id', calentando=$calentando)"
     }
 }

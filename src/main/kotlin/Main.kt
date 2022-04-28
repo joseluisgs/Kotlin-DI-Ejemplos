@@ -23,4 +23,5 @@ fun inyeccionDagger() {
     println("================")
     println()
     dagger.casas.main()
+    dagger.cafeteras.main()
 }
