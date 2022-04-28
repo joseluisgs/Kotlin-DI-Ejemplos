@@ -137,6 +137,7 @@ Es un Framework creado inicialmente por Square y actualmente mantenido por Googl
 Android cuyo principal objetivo es facilitar la implementación del patrón de diseño de Inyección de Dependencias, en
 otras palabras, se busca que sea Dagger2 el responsable de crear y administrar la creación de objetos en toda la
 aplicación. 
+
 ![ImagenDagger](https://miro.medium.com/max/411/0*XcCXeA9iy-I4XSZ0.png)
 
 Dagger resuelve las dependencias usando anotaciones, y generando las clases necesarias para la inyección de dependencias. El procesamiento de anotaciones requiere un tiempo de compilación adicional para generar dicho código. A veces, los cambios no se reflejan en la recompilación y requieren una limpieza del proyecto para regenerar código nuevo.
