@@ -1,7 +1,7 @@
 package manual.personas.controllers
 
-import manual.personas.models.Persona
-import manual.personas.repositories.IPersonasRepository
+import dagger.personas.models.Persona
+import dagger.personas.repositories.IPersonasRepository
 import java.util.*
 
 class PersonasController(private val personaRepository: IPersonasRepository) {

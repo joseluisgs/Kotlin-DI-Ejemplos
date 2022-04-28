@@ -1,9 +1,10 @@
 package manual.personas.services
 
-import manual.personas.models.Persona
+import dagger.personas.models.Persona
+import dagger.personas.services.IPersonasStorage
 import java.util.*
 
-class PersonasStorageDataBase : IPersonaStorage {
+class PersonasStorageDataBase : IPersonasStorage {
     private val id = UUID.randomUUID()
 
     override fun save(item: Persona): Persona {

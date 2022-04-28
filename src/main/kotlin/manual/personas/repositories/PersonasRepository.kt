@@ -1,10 +1,11 @@
 package manual.personas.repositories
 
-import manual.personas.models.Persona
-import manual.personas.services.IPersonaStorage
+import dagger.personas.models.Persona
+import dagger.personas.repositories.IPersonasRepository
+import dagger.personas.services.IPersonasStorage
 import java.util.*
 
-class PersonasRepository(private val storage: IPersonaStorage) : IPersonasRepository {
+class PersonasRepository(private val storage: IPersonasStorage) : IPersonasRepository {
     private val id = UUID.randomUUID()
 
     override fun save(entity: Persona): Persona {

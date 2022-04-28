@@ -1,7 +1,6 @@
-package manual.personas.repositories
+package dagger.personas.repositories
 
 import dagger.personas.models.Persona
-import dagger.personas.repositories.CrudRepository
 import java.util.*
 
 interface IPersonasRepository : CrudRepository<Persona, UUID>
