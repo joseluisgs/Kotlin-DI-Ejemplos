@@ -3,8 +3,10 @@ fun main() {
     println("=======================================")
     println()
     inyeccionManual()
+    inyeccionDagger()
 
 }
+
 
 fun inyeccionManual() {
     println("Inyección Manual")
@@ -14,4 +16,11 @@ fun inyeccionManual() {
     manual.cafeteras.main()
     manual.personas.main()
     manual.myviews.main()
+}
+
+fun inyeccionDagger() {
+    println("Inyección Dagger")
+    println("================")
+    println()
+    dagger.casas.main()
 }

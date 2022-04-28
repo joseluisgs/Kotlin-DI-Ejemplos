@@ -1,8 +1,10 @@
-package manual.casas
+package dagger.casas
 
 import java.util.*
+import javax.inject.Inject
 
-data class Casa(
+data class Casa
+@Inject constructor(
     private val ventana: Ventana,
     private val puerta: Puerta,
 ) {

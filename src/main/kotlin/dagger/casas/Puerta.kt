@@ -1,8 +1,11 @@
-package manual.casas
+package dagger.casas
 
 import java.util.*
+import javax.inject.Inject
 
-data class Puerta(private val id: UUID = UUID.randomUUID()) {
+class Puerta
+@Inject constructor() {
+    private val id: UUID = UUID.randomUUID()
     private var isOpened: Boolean = false
     fun abrir() {
         println("Abriendo puerta")
@@ -15,6 +18,6 @@ data class Puerta(private val id: UUID = UUID.randomUUID()) {
     }
 
     override fun toString(): String {
-        return "dagger.casas.Puerta(id='$id', isOpened=$isOpened)"
+        return "Puerta(id='$id', isOpened=$isOpened)"
     }
 }
