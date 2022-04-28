@@ -24,5 +24,6 @@ fun inyeccionDagger() {
     println()
     dagger.casas.main()
     dagger.cafeteras.main()
-    manual.personas.main()
+    dagger.personas.main()
+    dagger.myviews.main()
 }
