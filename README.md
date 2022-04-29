@@ -223,7 +223,7 @@ realizar la inyección de dependencias:
 - **Provider** En ocasiones queremos una instancia nueva del objeto cada vez que la utilicemos. Para ello usamos un
   Provider en el atributo que queramos. Lo recuperaremos con ***get()***.
 
-  Más información en: https://dagger.dev/
+Más información en: https://dagger.dev/
 
 ## Inyección de dependencias con Koin
 

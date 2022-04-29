@@ -2,6 +2,8 @@ import koin.cafeteras.CafeterasApp
 import koin.cafeteras.CafeterasModule
 import koin.casas.CasasApp
 import koin.casas.CasasModule
+import koin.myviews.MyView
+import koin.myviews.MyViewsModule
 import koin.personas.PersonasApp
 import koin.personas.PersonasModule
 import org.koin.core.context.startKoin
@@ -47,9 +49,10 @@ fun inyeccionKoin() {
         // use Koin logger
         printLogger()
         // declare modules
-        modules(CasasModule, CafeterasModule, PersonasModule)
+        modules(CasasModule, CafeterasModule, PersonasModule, MyViewsModule)
     }
     CasasApp().run()
     CafeterasApp().run()
     PersonasApp().run()
+    MyView().run()
 }

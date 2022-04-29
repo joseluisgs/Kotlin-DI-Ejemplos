@@ -2,7 +2,7 @@ package dagger.myviews
 
 fun main() {
     println("Ejemplo MyView - Presenter - Navigator")
-    println("===============================")
+    println("========================================")
     val myView = MyView()
     println(myView)
     println()
