@@ -1,4 +1,4 @@
-package manual.cafeteras
+package koin.cafeteras
 
 import java.util.*
 

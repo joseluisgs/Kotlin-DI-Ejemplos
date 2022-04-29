@@ -1,7 +1,5 @@
 package manual.casas
 
-import koin.casas.Puerta
-import koin.casas.Ventana
 import java.util.*
 
 data class Casa(

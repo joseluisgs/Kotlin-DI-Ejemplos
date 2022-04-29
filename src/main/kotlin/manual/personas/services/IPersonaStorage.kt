@@ -1,6 +1,6 @@
 package manual.personas.services
 
-import dagger.personas.models.Persona
-import dagger.personas.services.Storage
+import manual.personas.models.Persona
+
 
 interface IPersonaStorage : Storage<Persona>

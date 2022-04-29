@@ -4,7 +4,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 
-class CasasApplication : KoinComponent {
+class CasasApp : KoinComponent {
     val casa: Casa by inject()
 
     fun run() {
@@ -15,7 +15,6 @@ class CasasApplication : KoinComponent {
         casa.ventilar()
         println()
     }
-
 }
 
 fun main() {
@@ -26,5 +25,5 @@ fun main() {
         // declare modules
         modules(CasasModule)
     }
-    CasasApplication().run()
+    CasasApp().run()
 }

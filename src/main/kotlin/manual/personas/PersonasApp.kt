@@ -1,10 +1,10 @@
 package manual.personas
 
-import dagger.personas.controllers.PersonasController
-import dagger.personas.models.Persona
-import dagger.personas.repositories.PersonasRepository
-import dagger.personas.services.PersonasStorageDataBase
-import dagger.personas.services.PersonasStorageFile
+import manual.personas.controllers.PersonasController
+import manual.personas.models.Persona
+import manual.personas.repositories.PersonasRepository
+import manual.personas.services.PersonasStorageDataBase
+import manual.personas.services.PersonasStorageFile
 
 fun main() {
     println("Personas: Model->Controller->Repository->Storage(Database|File)")

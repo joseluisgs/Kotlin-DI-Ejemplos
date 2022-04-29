@@ -14,6 +14,7 @@ Ejemplos de cómo aplicar Inyección de Dependencias en Kotlin
     - [Código Acoplado](#código-acoplado)
   - [Inyección por Setter](#inyección-por-setter)
   - [Inyección con Constructor](#inyección-con-constructor)
+  - [Cómo seguir este proyecto](#cómo-seguir-este-proyecto)
   - [Inyección de dependencias manual](#inyección-de-dependencias-manual)
   - [Inyección de dependencias con Dagger2](#inyección-de-dependencias-con-dagger2)
   - [Inyección de dependencias con Koin](#inyección-de-dependencias-con-koin)
@@ -128,6 +129,15 @@ La funcionalidad permanece intacta en comparación con el enfoque de Inyección 
 Todavía podemos inyectar una subclase especializada de ClassB a ClassA.
 
 Ahora el compilador nos pedirá las dependencias que necesitamos en tiempo de compilación.
+
+## Cómo seguir este proyecto
+Hay distintos problemas tipo que resolveremos de manera manual, con Dagger2 y con Koin. Deberías mirar las tres implementaciones del mismo proyecto. Se ha intentado hacer los menores cambios posibles de la implementación base para que puedas ver cómo se puede hacer.
+
+El orden para echarles un ojo es:
+- Casas: dependencias para tener una casa con puertas y ventanas.
+- Cafeteras: cómo tener una cafetera en base a su bomba y calentador y realizar un café. 
+- Personas: Ejemplo típico de un MVC, es decir, Modelo, Servicios, Repositorios y Controladores. 
+- MyView: o como inyectar a una vista compuesta por un presentador y un navegador. 
 
 ## Inyección de dependencias manual
 En estos ejemplos, se muestra distintos tipos de inyecciones, ya sea usando clases o aplicando el patrón de inyección en base a interfaces.
@@ -251,10 +261,31 @@ class Target {
 El principal secreto de Korin es usar los Reified Functions, es decir, reificar la información de tipo genérico en tiempo de ejecución. Además basado en DSL (Domain Specific Language) otras de las características de usar Kotlin.
 
 Para trabajar con Koin debemos manejar estos conceptos: 
-- **module** Crea el módulo que Koin usa para proveer todas las dependencias.
-- **single** Nos ofrece la dependencia como *singleton*, es decir, siempre la misma instancia del objeto cada vez que sea inyectada.
-- **factory*** Nos ofrece una *instancia nueva* del objeto cada vez que se produzca la inyección.
-- **get()** Es usadado en el constructor de la clase para proveerle las dependencias indicadas.
+
+- **Funciones:**
+  - **startKoin { }** Crea una instancia de Koin y registra su contexto.
+  - **logger()** Carga el logger a usar por Koin, si necesitamos de ello.
+  - **modules()** Carga la lista de módulos que va a usar Koin.
+  - **by inject()** Obtiene la dependencia de manera perezosa o lazy.
+  - **get()** Obtiene la dependencia de manera directa, es decir, la instancia.
+  - **getProperty()/setProperty()** Getter/Setter de una propiedad.
+  - **KoinComponent { }** Te permite usar las facilidades de Koin.
+
+- **Scope:**
+  - **module { }** Crea el módulo que Koin usa para proveer todas las dependencias.
+  - **factory { }** Nos ofrece una *instancia nueva* del objeto cada vez que se produzca la inyección.
+  - **single { }** Nos ofrece la dependencia como *singleton*, es decir, siempre la misma instancia del objeto cada vez que sea inyectada.
+   - **get()** Es usado en el constructor o en otros contextos para proveer las dependencias indicadas.
+  - **scope { }** Grupo logico para el scope
+  - **scoped { }** Ofrece la definición de una dependencia activa un contexto, o scope
+
+- **Modulos:**
+  - **named("a_qualifier")** Ponemos un texto a la definición para "cualificarlo".
+  - **named<MyType>()** Devuelve un tipo a partir de una "definición" dada.
+  - **bind<MyInterface>()** Indica el tipo de dependencia se va a hacer el bind con el objeto.
+  - **binds(arrayOf(...))** Indica un array de tipos se va a hacer el bind con el objeto.
+  - **createdAtStart()** Crea una instancia de Koin del tipo Singleton al comienzo.
+
 
 Por otro lado, Koin también te deja trabajar con anotaciones, lo que le da un efoque muy rápido cómo definimos las dependencias.
 

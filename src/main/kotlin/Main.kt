@@ -10,8 +10,8 @@ fun main() {
 
 
 fun inyeccionManual() {
-    println("Inyección Manual")
-    println("================")
+    println("Inyección de Dependencias Manual")
+    println("===============================")
     println()
     manual.casas.main()
     manual.cafeteras.main()
@@ -20,8 +20,8 @@ fun inyeccionManual() {
 }
 
 fun inyeccionDagger() {
-    println("Inyección Dagger2")
-    println("================")
+    println("Inyección de Dependencias con Dagger2")
+    println("===================================")
     println()
     dagger.casas.main()
     dagger.cafeteras.main()
@@ -30,9 +30,9 @@ fun inyeccionDagger() {
 }
 
 fun inyeccionKoin() {
-    println("Inyección Koin")
-    println("==============")
+    println("Inyección de Dependencias Koin")
+    println("===============================")
     println()
     koin.casas.main()
-
+    koin.cafeteras.main()
 }

@@ -1,7 +1,5 @@
 package manual.cafeteras
 
-import dagger.cafeteras.Bomba
-import dagger.cafeteras.Calentador
 import java.util.*
 
 data class Cafetera(

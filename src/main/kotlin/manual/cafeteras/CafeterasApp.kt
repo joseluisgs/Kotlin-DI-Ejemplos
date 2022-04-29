@@ -1,11 +1,5 @@
 package manual.cafeteras
 
-import dagger.cafeteras.Bomba
-import dagger.cafeteras.Cafetera
-import dagger.cafeteras.Calentador
-import dagger.cafeteras.CalentadorElectrico
-import dagger.cafeteras.Termosifon
-
 fun main() {
     println("Ejemplo de Cafeteras Manual")
     println("===========================")

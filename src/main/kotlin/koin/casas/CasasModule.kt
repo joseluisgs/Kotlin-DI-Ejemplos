@@ -2,6 +2,7 @@ package koin.casas
 
 import org.koin.dsl.module
 
+// Modulo que indica cómo son las dependencias.
 val CasasModule = module {
     // Puertas y ventanas como instancias nuevas
     factory { Puerta() }
