@@ -182,8 +182,7 @@ Podemos resumir el funcionamiento de Dagger2 en el siguiente diagrama:
 ![daggerEsquema](https://github.com/joseluisgs/EntornosDesarrollo-08-2021-2022/raw/master/DI/DI-Dagger-Java/images/dagger.png)
 
 
-Tendremos un **Proveedor**, es el encargado de definir cómo se construyen las dependencias. En Dagger2 utilizamos ***
-Módulos*** y cada módulo es una clase que tiene el manejo de la creación de dichas dependencias.
+Tendremos un **Proveedor**, es el encargado de definir cómo se construyen las dependencias. En Dagger2 utilizamos ***Módulos*** y cada módulo es una clase que tiene el manejo de la creación de dichas dependencias.
 
 En consecuencia tenemos un **Consumidor**, quien es el que necesita de ciertas dependencias que solicitará al **
 Proveedor** por medio de un **Facilitador**.
