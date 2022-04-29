@@ -8,7 +8,7 @@ import manual.personas.services.PersonasStorageFile
 
 fun main() {
     println("Personas: Model->Controller->Repository->Storage(Database|File)")
-    println("==============================")
+    println("===============================================================")
     val p = Persona(nombre = "Juan", apellido = "Perez", dni = "12345678")
     println(p)
     println()
