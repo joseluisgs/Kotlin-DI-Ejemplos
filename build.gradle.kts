@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val daggerVersion: String = "2.41"
 val koinVersion: String = "3.2.0-beta-1"
-val kodeinVersion: String = "7.10.0"
+
 // val koinKspVersion: String = "1.0.0-beta-2"
 
 plugins {
@@ -37,12 +37,11 @@ dependencies {
     // si queremos test
     //testImplementation("io.insert-koin:koin-test:$koinVersion")
 
-    // Kodein
-    implementation("org.kodein.di:kodein-di-jvm:$kodeinVersion")
     // Test
     testImplementation(kotlin("test"))
 }
 
+// Para usar notaciones de Koin
 //kotlin {
 //    sourceSets.main {
 //        kotlin.srcDir("build/generated/ksp/main/kotlin")

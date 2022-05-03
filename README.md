@@ -12,13 +12,13 @@ Ejemplos de cómo aplicar Inyección de Dependencias en Kotlin
   - [Acerca de](#acerca-de)
   - [Inyección de Dependencias (DI)](#inyección-de-dependencias-di)
     - [Código Acoplado](#código-acoplado)
-  - [Inyección por Setter](#inyección-por-setter)
-  - [Inyección con Constructor](#inyección-con-constructor)
+    - [Inyección por Setter](#inyección-por-setter)
+    - [Inyección con Constructor](#inyección-con-constructor)
+    - [Inyección de dependencias IoC o Service Locator](#inyección-de-dependencias-ioc-o-service-locator)
   - [Cómo seguir este proyecto](#cómo-seguir-este-proyecto)
   - [Inyección de dependencias manual](#inyección-de-dependencias-manual)
   - [Inyección de dependencias con Dagger2](#inyección-de-dependencias-con-dagger2)
   - [Inyección de dependencias con Koin](#inyección-de-dependencias-con-koin)
-  - [Inyección de dependencias con Kodein](#inyección-de-dependencias-con-kodein)
   - [Conclusiones](#conclusiones)
   - [Autor](#autor)
     - [Contacto](#contacto)
@@ -57,7 +57,7 @@ fun main() {
     val classA = ClassA()
 }
 ```
-## Inyección por Setter
+### Inyección por Setter
 No recomendado. Con este enfoque, eliminamos la palabra clave new ClassB de nuestra ClassA. Por lo tanto, alejamos la responsabilidad de la creación de ClassB deClassA.
 
 ```kotlin
@@ -101,7 +101,7 @@ class Main {
 }
 ```
 
-## Inyección con Constructor
+### Inyección con Constructor
 ClassA todavía tiene una fuerte dependencia de ClassB pero ahora se puede inyectar desde afuera usando el constructor:
 
 ```kotlin
@@ -131,6 +131,25 @@ La funcionalidad permanece intacta en comparación con el enfoque de Inyección 
 Todavía podemos inyectar una subclase especializada de ClassB a ClassA.
 
 Ahora el compilador nos pedirá las dependencias que necesitamos en tiempo de compilación.
+
+### Inyección de dependencias IoC o Service Locator
+![image](https://www.apriorit.com/images/articles/ServiceLocator-DI.png)
+![image](https://i.stack.imgur.com/BrkBd.png)
+![image](https://www.rookian.com/img/solid.png)
+
+A la hora de resolver las dependencias veremos que tendremos dos enfoques, uno puro, basado en un contenedor de DI, grafo de dependencias o módulo de Inversión de Control y otros enfoques que es a través de un proveedor de servicios.
+
+La inyección de dependencia es una técnica en la que un objeto recibe otros objetos de los que depende. Estos otros objetos se denominan dependencias..
+
+El patrón de localización de servicios es un patrón de diseño utilizado en el desarrollo de software para encapsular los procesos involucrados en la obtención de un servicio con una fuerte capa de abstracción. Este patrón utiliza un registro central conocido como “localizador de servicios”, que a pedido devuelve la información necesaria para realizar una determinada tarea.
+
+Service Locator se utiliza cuando no conoce el proveedor real del servicio antes del tiempo de ejecución. DI se usa cuando sabe que es el contenedor estático el que proporciona ese servicio.
+
+En resumen, el Localizador de servicios y la Inyección de dependencias son solo implementaciones del ***Principio de inversión de dependencias***.
+
+Ambos suenan similares y nos brindan beneficios similares, pero en algún lugar te preguntas por qué tenemos dos nombres para el mismo patrón que hace un trabajo casi similar.
+
+La diferencia puede parecer leve aquí, pero incluso con Service Locator, la clase sigue siendo responsable de crear sus dependencias. Simplemente usa el localizador de servicios para hacerlo. Le pide a ServiceLocator que obtenga sus dependencias. Con la inyección de dependencia, la clase recibe sus dependencias. No sabe ni le importa de dónde vienen.
 
 ## Cómo seguir este proyecto
 Hay distintos problemas tipo que resolveremos de manera manual, con Dagger2 y con Koin. Deberías mirar las tres implementaciones del mismo proyecto. Se ha intentado hacer los menores cambios posibles de la implementación base para que puedas ver cómo se puede hacer.
@@ -292,18 +311,6 @@ Por otro lado, Koin también te deja trabajar con anotaciones, lo que le da un e
 
 Más información en: https://insert-koin.io/
 
-## Inyección de dependencias con Kodein
-
-![imageKoin](https://raw.githubusercontent.com/Kodein-Framework/Kodein-DI/6.3/Kodein-DI-logo.png)
-
-Kodein es un framework para trabajar en Kotlin en todas las plataformas. Dentro de este framework, podemos encontrar DI: su conjunto de librerías para realizar la inyección de dependencias.
-Al igual que Dagger2 si nos construye el grafo de dependencias, por lo tanto no es un service locator como Koin.
-
-Una de sus principales características es que podemos realizar la resolución de dependencias en base a la inyección pura, o dejando que la propia clase lo resuelva en base al objeto kodin donde quedan definidas.
-
-
-Más información en: https://kodein.org/di/
-
 ## Conclusiones
 Es importante no obsesionarse en si la inyección se resuelve por anotaciones, por DSL o si realmente las librerías que usas son un sistema DI puro o basado en un Service Locator (no te vuelvas loco/a por eso ni seas tan purista, lo importante es que las dependencias te las da). Mi consejo es que uses el que más seguro te haga sentir y sobre todo el que se adapte mejor a tu problema o aplicación de desarrollar.
 
@@ -313,13 +320,9 @@ Dagger2 y su sistema de anotaciones, hace que la compilación sea más lenta, pe
 
 Koin es un service locator, pero que te resuelve el problema y de manera muy óptima. Tiene elementos muy interesante y funciona a la perfección con Kotlin. Puedes nombrar dependencias y puedes aplicar Lazy de la misma manera que lo hace Kotlin y no cargando una librería especial. Para medianos o pequeños es una opción muy recomendada. Koin usa DSL de Kotlin y resuelve de forma perezosa sus dependencias en tiempo de ejecución. No hace nada en tiempo de compilación. Es una biblioteca mucho más pequeña y liviana que Dagger, y no genera ningún código. Su problema es que a veces puede dar los errores en tiempo de ejecución, al no ser compilado como Dagger2. 
 
-Finalmente tenemos Kodein. Está entre medias de las dos. No por eso es algo malo, al revés. Nos ofrece cosas muy interesantes. Similar a Koin, es una biblioteca pequeña y liviana que resuelve las dependencias de forma perezosa en tiempo de ejecución. Tampoco genera ningún código y hace un uso extensivo de las funciones en línea de Kotlin bajo el capó como una optimización del rendimiento. De nuevo pueden aparecer los problemas en tiempo de ejecución.
+A nivel de rendimiento, dado que Dagger hace todo su trabajo en tiempo de compilación, tiene el mejor rendimiento en tiempo de ejecución en todos los dispositivos, a costa de tiempos de compilación más largos. Koin es más lento que Dagger, pero la diferencia en el tiempo de configuración e inyección no se nota mucho cuando se usa una aplicación.
 
-A nivel de rendimiento, dado que Dagger hace todo su trabajo en tiempo de compilación, tiene el mejor rendimiento en tiempo de ejecución en todos los dispositivos, a costa de tiempos de compilación más largos. Koin es más lento que Dagger, pero la diferencia en el tiempo de configuración e inyección no se nota mucho cuando se usa una aplicación. De los tres, Kodein tiene el rendimiento de tiempo de ejecución más lento, cuando una inyección toma más tiempo que el subproceso de la interfaz de usuario, el usuario puede experimentar una pantalla de bloqueo.
-
-A la hora de testear, con Dagger2 puedes proporcionar fácilmente versiones simuladas de sus clases configurando un TestComponent para usar en sus pruebas. TestComponent debe extender la clase de componente de producción normal. Puedes incluir módulos de producción o módulos de prueba simulados. Dado que Koin resuelve las dependencias de forma perezosa en el tiempo de ejecución, no sabrá que hay un problema hasta que active la línea específica de código erróneo y la aplicación se bloquee. Pero una vez que se encuentre con la excepción, podrá ver un seguimiento de la pila y saber exactamente qué línea la causó. Los mensajes de error de excepción de Koin son bastante comprensibles y descriptivos (de lo mejor). Similar a Koin, los errores se detectan durante el tiempo de ejecución y los mensajes de error de excepción son muy útiles.
-
-Uno de los puntos a tener en cuenta es la comunidad, y Kodein tiene una excelenet comunidad y Daggger2 tiene a Google detrás. 
+A la hora de testear, con Dagger2 puedes proporcionar fácilmente versiones simuladas (mocks) de sus clases configurando un TestComponent para usar en sus pruebas. TestComponent debe extender la clase de componente de producción normal. Puedes incluir módulos de producción o módulos de prueba simulados. Dado que Koin resuelve las dependencias de forma perezosa en el tiempo de ejecución, no sabrá que hay un problema hasta que active la línea específica de código erróneo y la aplicación se bloquee. Pero una vez que se encuentre con la excepción, podrá ver un seguimiento de la pila y saber exactamente qué línea la causó. Los mensajes de error de excepción de Koin son bastante comprensibles y descriptivos (de lo mejor).
 
 Más información: https://proandroiddev.com/exploring-dependency-injection-in-android-dagger-koin-and-kodein-e219a764be52
 
