@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val daggerVersion: String = "2.41"
 val koinVersion: String = "3.2.0-beta-1"
+val kodeinVersion: String = "7.10.0"
 // val koinKspVersion: String = "1.0.0-beta-2"
 
 plugins {
@@ -11,7 +12,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     // Usamos kapt para anotaciones de Dagger
     kotlin("kapt") version kotlinVersion
-    // Usamos KSP para Koin
+    // Usamos KSP para Koin con anotaciones
     // id("com.google.devtools.ksp") version kspVersion
 }
 
@@ -27,6 +28,7 @@ dependencies {
     // Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+
     // Koin
     implementation("io.insert-koin:koin-core:$koinVersion")
     // Si queremos las anotaciones de Koin
@@ -34,6 +36,9 @@ dependencies {
     // ksp("io.insert-koin:koin-ksp-compiler:$koinKspVersion")
     // si queremos test
     //testImplementation("io.insert-koin:koin-test:$koinVersion")
+
+    // Kodein
+    implementation("org.kodein.di:kodein-di-jvm:$kodeinVersion")
     // Test
     testImplementation(kotlin("test"))
 }
